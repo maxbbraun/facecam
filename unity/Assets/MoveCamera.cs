@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 public class MoveCamera : MonoBehaviour {
-  public Vector3 position = new Vector3 (0.0f, 1.0f, -10.0f);
+  public Vector3 position = Vector3.zero;
   public Quaternion rotation = Quaternion.identity;
 
   void Start() {
