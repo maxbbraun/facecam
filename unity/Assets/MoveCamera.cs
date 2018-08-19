@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Text.RegularExpressions;
+﻿using Braun.FaceCam;
+using Google.Protobuf;
+using System;
 using UnityEngine;
 
 public class MoveCamera : MonoBehaviour {
-  private const string posePattern = @"P (-?\d+\.\d+) (-?\d+\.\d+) (-?\d+\.\d+) R (-?\d+\.\d+) (-?\d+\.\d+) (-?\d+\.\d+) (-?\d+\.\d+)";
-
   public Vector3 position = new Vector3 (0.0f, 1.0f, -10.0f);
   public Quaternion rotation = Quaternion.identity;
 
@@ -19,19 +18,11 @@ public class MoveCamera : MonoBehaviour {
   }
 
   void Move(string message) {
-    Match poseMatch = Regex.Match(message, posePattern);
-    if (poseMatch.Success) {
-      position.Set(
-        float.Parse(poseMatch.Groups[1].Value),
-        float.Parse(poseMatch.Groups[2].Value),
-        float.Parse(poseMatch.Groups[3].Value));
-      rotation.Set(
-        float.Parse(poseMatch.Groups[4].Value),
-        float.Parse(poseMatch.Groups[5].Value),
-        float.Parse(poseMatch.Groups[6].Value),
-        float.Parse(poseMatch.Groups[7].Value));
-    } else {
-      Debug.LogError("Unknown message: " + message);
-    }
+    // Deserialize the proto.
+    CameraPose pose = CameraPose.Parser.ParseFrom(Convert.FromBase64String(message));
+
+    // Update the camera's position and rotation.
+    position.Set(pose.PositionX, pose.PositionY, pose.PositionZ);
+    rotation.Set(pose.RotationX, pose.RotationY, pose.RotationZ, pose.RotationW);
   }
 }

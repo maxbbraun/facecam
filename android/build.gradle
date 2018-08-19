@@ -6,6 +6,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.6'
     }
 }
 
@@ -20,6 +21,11 @@ allprojects {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
+
+sourceSets {
+    main.java.srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -27,6 +33,7 @@ dependencies {
     implementation group: 'org.bytedeco', name: 'javacv', version: '1.4.2'
     implementation group: 'org.bytedeco.javacpp-presets', name: 'opencv-platform', version: '3.4.2-1.4.2'
     implementation 'com.google.ar.sceneform:core:1.4.0'
+    implementation 'com.google.protobuf:protobuf-lite:3.0.0'
 }
 
 android {
@@ -74,5 +81,26 @@ android {
 
     packagingOptions {
         doNotStrip '*/armeabi-v7a/*.so'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.6.1'
+    }
+    plugins {
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.plugins {
+                javalite {}
+            }
+        }
     }
 }

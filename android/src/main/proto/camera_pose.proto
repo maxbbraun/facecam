@@ -1,0 +1,16 @@
+syntax = "proto3";
+package fyi.braun.facecam;
+option csharp_namespace = "Braun.FaceCam";
+
+message CameraPose {
+  // Position vector.
+  float position_x = 1;
+  float position_y = 2;
+  float position_z = 3;
+
+  // Rotation quaternion.
+  float rotation_x = 4;
+  float rotation_y = 5;
+  float rotation_z = 6;
+  float rotation_w = 7;
+}
