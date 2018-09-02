@@ -12,6 +12,8 @@ Basic flow:
  3. In [`UnityPlayerActivity.java`](https://github.com/maxbbraun/facecam/blob/master/android/src/main/java/fyi/braun/facecam/UnityPlayerActivity.java#L51), serialize the camera pose using [`camera_pose.proto`](android/src/main/proto/camera_pose.proto) and send it to the Unity scene.
  4. In [`MoveCamera.cs`](https://github.com/maxbbraun/facecam/blob/master/unity/Assets/MoveCamera.cs#L24), deserialize the pose and apply it to the scene's camera.
 
+The 3D model in the scene is [Coral Reef](https://poly.google.com/view/e5KQ7U9e1b7) by [Ashley Alicea](https://poly.google.com/user/0CFOwrWffJf).
+
 ## License
 
 Copyright 2018 Max Braun
