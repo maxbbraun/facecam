@@ -13,19 +13,3 @@ Basic flow:
  4. In [`MoveCamera.cs`](https://github.com/maxbbraun/facecam/blob/master/unity/Assets/MoveCamera.cs#L24), deserialize the pose and apply it to the scene's camera.
 
 The 3D model in the scene is [Coral Reef](https://poly.google.com/view/e5KQ7U9e1b7) by [Ashley Alicea](https://poly.google.com/user/0CFOwrWffJf).
-
-## License
-
-Copyright 2018 Max Braun
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
